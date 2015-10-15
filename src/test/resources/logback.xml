@@ -1,0 +1,16 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5.5level %date [%-12.12thread] %-35.35logger{35} | %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${loggingDefaultLevel:-INFO}">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <logger name="org.openremote" level="DEBUG"/>
+    <logger name="org.apache.camel.testng" level="WARN"/>
+
+</configuration>
