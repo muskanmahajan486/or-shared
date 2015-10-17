@@ -38,6 +38,7 @@ repositories {
 dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional
     compile "com.google.gwt:gwt-user:$gwtVersion", optional
+    compile "javax.validation:validation-api:$javaxValidationVersion"
 
     testCompile "org.testng:testng:$testngVersion"
     testCompile "org.slf4j:slf4j-api:$slf4jVersion"
@@ -62,7 +63,7 @@ publishing {
             url "${artifactRepoBase}/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}"
             credentials() {
                 username artifactRepoUsername
-                password hasProperty("artifactRepoPassword") ? artifactRepoPassword : "SECRET"
+                password (project.hasProperty("artifactRepoPassword") ? project.property("artifactRepoPassword") : "SECRET")
             }
         }
     }
