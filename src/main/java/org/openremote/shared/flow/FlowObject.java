@@ -1,21 +1,26 @@
 package org.openremote.shared.flow;
 
 import com.google.gwt.core.client.js.JsType;
-import org.openremote.shared.model.Identifier;
+import org.openremote.shared.model.Identifiable;
+
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @JsType
-public class FlowObject {
+@MappedSuperclass
+public class FlowObject extends Identifiable {
 
+    @NotNull
+    @Size(min = 3, max = 255)
     public String label;
-
-    public Identifier identifier;
 
     protected FlowObject() {
     }
 
-    public FlowObject(String label, Identifier identifier) {
+    public FlowObject(String label, String id, String type) {
+        super(id, type);
         this.label = label;
-        this.identifier = identifier;
     }
 
     public boolean isLabelEmpty() {
@@ -34,38 +39,11 @@ public class FlowObject {
         this.label = label;
     }
 
-    public Identifier getIdentifier() {
-        return identifier;
-    }
-
-    public String getId() {
-        return getIdentifier().getId();
-    }
-
-    public boolean isOfType(String type) {
-        return getIdentifier().getType().equals(type);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        FlowObject that = (FlowObject) o;
-
-        return identifier.equals(that.identifier);
-    }
-
-    @Override
-    public int hashCode() {
-        return identifier.hashCode();
-    }
-
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +
-            "label='" + label + '\'' +
-            ", id=" + identifier +
+            "label='" + getLabel() + '\'' +
+            ", id=" + getId() +
             '}';
     }
 

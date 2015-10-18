@@ -2,10 +2,20 @@ package org.openremote.shared.flow;
 
 import com.google.gwt.core.client.js.JsType;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+
 @JsType
 public class Wire {
 
+    public String flowId;
+
+    @NotNull
+    @Column(name = "SOURCE_NODE_ID")
     public String sourceId;
+
+    @NotNull
+    @Column(name = "SINK_NODE_ID")
     public String sinkId;
 
     protected Wire() {

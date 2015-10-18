@@ -1,7 +1,6 @@
 package org.openremote.shared.flow;
 
 import com.google.gwt.core.client.js.JsType;
-import org.openremote.shared.model.Identifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,13 +31,13 @@ public class Node extends FlowObject {
     protected Node() {
     }
 
-    public Node(String label, Identifier identifier) {
-        super(label, identifier);
+    public Node(String label, String id, String type) {
+        super(label, id, type);
     }
 
-    public Node(String label, Identifier identifier, String subflowId) {
-        super(label, identifier);
-        if (!identifier.getType().equals(TYPE_SUBFLOW)) {
+    public Node(String label, String id, String type, String subflowId) {
+        super(label, id, type);
+        if (!isOfTypeSubflow()) {
             throw new IllegalArgumentException(
                 "Node with subflow identifier must be of type: " + TYPE_SUBFLOW
             );
@@ -192,7 +191,7 @@ public class Node extends FlowObject {
     public Slot findSlotByPosition(int position, String type) {
         if (position > getSlots().length-1)
             return null;
-        if (getSlots()[position].getIdentifier().getType().equals(type))
+        if (getSlots()[position].isOfType(type))
             return getSlots()[position];
         return null;
     }

@@ -2,20 +2,26 @@ package org.openremote.shared.model;
 
 import com.google.gwt.core.client.js.JsType;
 
-@JsType
-public class Identifier {
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+@JsType
+@MappedSuperclass
+public abstract class Identifiable {
+
+    @Id
     public String id;
+
+    @Column(name = "MODEL_TYPE")
+    @NotNull
+    @Size(min = 3, max = 255)
     public String type; // URI
 
-    protected Identifier() {
+    protected Identifiable() {
     }
 
-    public Identifier(String id) {
-        this.id = id;
-    }
-
-    public Identifier(String id, String type) {
+    public Identifiable(String id, String type) {
         this.id = id;
         this.type = type;
     }
@@ -32,15 +38,18 @@ public class Identifier {
         return type;
     }
 
+    public boolean isOfType(String type) {
+        return getType().equals(type);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Identifier that = (Identifier) o;
+        Identifiable that = (Identifiable) o;
 
-        return id.equals(that.id);
-
+        return getId().equals(that.getId());
     }
 
     @Override
@@ -48,8 +57,8 @@ public class Identifier {
         return id.hashCode();
     }
 
-    @Override
-    public String toString() {
+    public String toTypeIdString() {
         return type + ':' + id;
     }
+
 }

@@ -38,6 +38,7 @@ repositories {
 dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional
     compile "com.google.gwt:gwt-user:$gwtVersion", optional
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$jpa21Version", optional
     compile "javax.validation:validation-api:$javaxValidationVersion"
 
     testCompile "org.testng:testng:$testngVersion"

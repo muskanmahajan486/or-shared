@@ -2,34 +2,40 @@ package org.openremote.shared.flow;
 
 import com.google.gwt.core.client.js.JsNoExport;
 import com.google.gwt.core.client.js.JsType;
-import org.openremote.shared.model.Identifier;
 
+import javax.persistence.*;
 import java.util.*;
 
 @JsType
+@Entity
 public class Flow extends FlowObject {
 
     public static final String TYPE = "urn:openremote:flow";
 
+    @Transient
     public Node[] nodes = new Node[0];
+
     public Wire[] wires = new Wire[0];
+
+    @Transient
     public FlowDependency[] superDependencies = new FlowDependency[0];
+    @Transient
     public FlowDependency[] subDependencies = new FlowDependency[0];
 
     protected Flow() {
     }
 
-    public Flow(String label, Identifier identifier) {
-        super(label, identifier);
+    public Flow(String label, String id) {
+        super(label, id, TYPE);
     }
 
-    public Flow(String label, Identifier identifier, Node... nodes) {
-        super(label, identifier);
+    public Flow(String label, String id, Node... nodes) {
+        this(label, id);
         this.nodes = nodes;
     }
 
-    public Flow(String label, Identifier identifier, Node[] nodes, Wire[] wires) {
-        super(label, identifier);
+    public Flow(String label, String id, Node[] nodes, Wire[] wires) {
+        this(label, id);
         this.nodes = nodes;
         this.wires = wires;
         if (wires != null) {
@@ -49,7 +55,7 @@ public class Flow extends FlowObject {
         Iterator<Node> it = collection.iterator();
         while (it.hasNext()) {
             Node node = it.next();
-            if (!node.getIdentifier().getType().equals(type))
+            if (!node.isOfType(type))
                 it.remove();
         }
         return collection.toArray(new Node[collection.size()]);

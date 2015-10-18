@@ -131,7 +131,14 @@ public abstract class FlowDependencyResolver {
             }
 
             dependencyList.add(
-                new FlowDependency(subflowDependent.getLabel(), subflowDependent.getIdentifier(), level, flowHasWiresAttached, flowHasInvalidPeers)
+                new FlowDependency(
+                    subflowDependent.getLabel(),
+                    subflowDependent.getId(),
+                    subflowDependent.getType(),
+                    level,
+                    flowHasWiresAttached,
+                    flowHasInvalidPeers
+                )
             );
 
             populateSuperDependencies(subflowDependent, level + 1, dependencyList);
@@ -167,7 +174,15 @@ public abstract class FlowDependencyResolver {
             }
 
             if (!added.contains(subflow.getId())) {
-                dependencyList.add(new FlowDependency(subflow.getLabel(), subflow.getIdentifier(), hydrate ? subflow : null, level));
+                dependencyList.add(
+                    new FlowDependency(
+                        subflow.getLabel(),
+                        subflow.getId(),
+                        subflow.getType(),
+                        hydrate ? subflow : null,
+                        level
+                    )
+                );
                 added.add(subflow.getId());
                 populateSubDependencies(subflow, hydrate, level + 1, dependencyList);
             }

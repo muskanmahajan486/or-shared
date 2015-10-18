@@ -1,7 +1,6 @@
 package org.openremote.shared.flow;
 
 import com.google.gwt.core.client.js.JsType;
-import org.openremote.shared.model.Identifier;
 
 @JsType
 public class Slot extends FlowObject {
@@ -16,32 +15,32 @@ public class Slot extends FlowObject {
     protected Slot() {
     }
 
-    public Slot(Identifier identifier) {
-        super(null, identifier);
+    public Slot(String id, String type) {
+        super(null, id, type);
     }
 
-    public Slot(String label, Identifier identifier) {
-        this(label, identifier, null);
+    public Slot(String label, String id, String type) {
+        this(label, id, type, null);
     }
 
-    public Slot(String label, Identifier identifier, String propertyPath) {
-        this(label, identifier, true, null, propertyPath);
+    public Slot(String label, String id, String type, String propertyPath) {
+        this(label, id, type, true, null, propertyPath);
     }
 
-    public Slot(Identifier identifier, boolean connectable) {
-        this(null, identifier, connectable);
+    public Slot(String id, String type, boolean connectable) {
+        this(null, id, type, connectable);
     }
 
-    public Slot(String label, Identifier identifier, boolean connectable) {
-        this(label, identifier, connectable, null, null);
+    public Slot(String label, String id, String type, boolean connectable) {
+        this(label, id, type, connectable, null, null);
     }
 
     public Slot(String id, Slot peer, String label) {
-        this(label, new Identifier(id, peer.getIdentifier().getType()), true, peer.getId(), null);
+        this(label, id, peer.getType(), true, peer.getId(), null);
     }
 
-    public Slot(String label, Identifier identifier, boolean connectable, String peerId, String propertyPath) {
-        super(label, identifier);
+    public Slot(String label, String id, String type, boolean connectable, String peerId, String propertyPath) {
+        super(label, id, type);
         this.connectable = connectable;
         this.peerId = peerId;
         this.propertyPath = propertyPath;
@@ -74,11 +73,11 @@ public class Slot extends FlowObject {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +
-            "label='" + label + '\'' +
-            ", id=" + identifier +
-            ", connectable=" + connectable +
-            ", peerId=" + peerId +
-            ", propertyPath=" + propertyPath +
+            "label='" + getLabel() + '\'' +
+            ", id=" + getId() +
+            ", connectable=" + isConnectable() +
+            ", peerId=" + getPeerId() +
+            ", propertyPath=" + getPropertyPath() +
             '}';
     }
 }

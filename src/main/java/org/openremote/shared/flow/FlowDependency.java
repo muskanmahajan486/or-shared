@@ -1,7 +1,6 @@
 package org.openremote.shared.flow;
 
 import com.google.gwt.core.client.js.JsType;
-import org.openremote.shared.model.Identifier;
 
 @JsType
 public class FlowDependency extends FlowObject {
@@ -14,18 +13,18 @@ public class FlowDependency extends FlowObject {
     protected FlowDependency() {
     }
 
-    public FlowDependency(String label, Identifier identifier) {
-        super(label, identifier);
+    public FlowDependency(String label, String id, String type) {
+        super(label, id, type);
     }
 
-    public FlowDependency(String label, Identifier identifier, int level, boolean wired, boolean peersInvalid) {
-        this(label, identifier, null, level);
+    public FlowDependency(String label, String id, String type, int level, boolean wired, boolean peersInvalid) {
+        this(label, id, type, null, level);
         this.wired = wired;
         this.peersInvalid = peersInvalid;
     }
 
-    public FlowDependency(String label, Identifier identifier, Flow flow, int level) {
-        super(label, identifier);
+    public FlowDependency(String label, String id, String type, Flow flow, int level) {
+        super(label, id, type);
         this.flow = flow;
         this.level = level;
     }

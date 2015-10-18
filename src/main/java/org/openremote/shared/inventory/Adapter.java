@@ -1,7 +1,5 @@
 package org.openremote.shared.inventory;
 
-import org.openremote.shared.model.Identifier;
-
 public class Adapter extends InventoryObject {
 
     protected String discoveryEndpoint;
@@ -9,12 +7,12 @@ public class Adapter extends InventoryObject {
     protected Adapter() {
     }
 
-    public Adapter(String label, Identifier id, Identifier... keys) {
-        super(label, id, keys);
+    public Adapter(String label, String id, String type) {
+        super(label, id, type);
     }
 
-    public Adapter(String label, Identifier id, String discoveryEndpoint) {
-        super(label, id);
+    public Adapter(String label, String id, String type, String discoveryEndpoint) {
+        super(label, id, type);
         this.label = label;
         this.discoveryEndpoint = discoveryEndpoint;
     }
