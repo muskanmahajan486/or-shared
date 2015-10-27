@@ -3,6 +3,7 @@ package org.openremote.shared.flow;
 import com.google.gwt.core.client.js.JsType;
 import org.openremote.shared.model.Identifiable;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,8 +12,8 @@ import javax.validation.constraints.Size;
 @MappedSuperclass
 public class FlowObject extends Identifiable {
 
-    @NotNull
     @Size(min = 3, max = 255)
+    @Column(name = "LABEL", nullable = true)
     public String label;
 
     protected FlowObject() {

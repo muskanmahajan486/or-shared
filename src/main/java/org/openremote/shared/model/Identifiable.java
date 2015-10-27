@@ -11,11 +11,12 @@ import javax.validation.constraints.Size;
 public abstract class Identifiable {
 
     @Id
+    @Column(name = "ID")
     public String id;
 
-    @Column(name = "MODEL_TYPE")
     @NotNull
     @Size(min = 3, max = 255)
+    @Column(name = "MODEL_TYPE")
     public String type; // URI
 
     protected Identifiable() {

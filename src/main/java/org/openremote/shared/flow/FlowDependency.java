@@ -7,7 +7,7 @@ public class FlowDependency extends FlowObject {
 
     public Flow flow; // Optional, only in fully materialized dependency tree
     public int level;
-    public boolean wired; // Super-dependencies might be only users are have actual wires (hard dependency)
+    public boolean wired; // Super-dependencies might be only using this flow or have actual wires (hard dependency)
     public boolean peersInvalid; // Wired super-dependencies might have broken wires if we are missing consumers/producers peers
 
     protected FlowDependency() {

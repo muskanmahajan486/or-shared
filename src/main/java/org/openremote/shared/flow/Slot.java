@@ -1,15 +1,35 @@
 package org.openremote.shared.flow;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+
+import javax.persistence.*;
 
 @JsType
+@Entity
+@Table(name = "SLOT")
 public class Slot extends FlowObject {
 
     public static final String TYPE_SINK = "urn:openremote:flow:slot:sink";
     public static final String TYPE_SOURCE = "urn:openremote:flow:slot:source";
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NODE_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_SLOT_NODE_ID"))
+    @org.hibernate.annotations.OnDelete(
+        action = org.hibernate.annotations.OnDeleteAction.CASCADE
+    )
+    @JsIgnore
+    @JsonIgnore
+    public Node node;
+
+    @Column(name = "CONNECTABLE", nullable = false)
     public boolean connectable = true;
+
+    @Column(name = "PEER_ID", nullable = true)
     public String peerId;
+
+    @Column(name = "PROPERTY_PATH", nullable = true)
     public String propertyPath;
 
     protected Slot() {

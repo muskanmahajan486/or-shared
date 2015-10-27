@@ -1,22 +1,71 @@
 package org.openremote.shared.flow;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @JsType
+@IdClass(org.openremote.shared.flow.Wire.Id.class)
+@Entity
+@Table(name = "WIRE")
 public class Wire {
 
-    public String flowId;
+    public static class Id implements Serializable {
 
+        public String sourceId;
+        public String sinkId;
+        public String flowId;
+
+        public Id() {
+        }
+
+        public Id(String sourceId, String sinkId) {
+            this.sourceId = sourceId;
+            this.sinkId = sinkId;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Id id = (Id) o;
+
+            if (sourceId != null ? !sourceId.equals(id.sourceId) : id.sourceId != null) return false;
+            if (sinkId != null ? !sinkId.equals(id.sinkId) : id.sinkId != null) return false;
+            return !(flowId != null ? !flowId.equals(id.flowId) : id.flowId != null);
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = sourceId != null ? sourceId.hashCode() : 0;
+            result = 31 * result + (sinkId != null ? sinkId.hashCode() : 0);
+            result = 31 * result + (flowId != null ? flowId.hashCode() : 0);
+            return result;
+        }
+    }
+
+    @javax.persistence.Id
     @NotNull
     @Column(name = "SOURCE_NODE_ID")
     public String sourceId;
 
+    @javax.persistence.Id
     @NotNull
     @Column(name = "SINK_NODE_ID")
     public String sinkId;
+
+    @javax.persistence.Id
+    @NotNull
+    @Column(name = "FLOW_ID")
+    @JsIgnore
+    @JsonIgnore
+    public String flowId;
 
     protected Wire() {
     }

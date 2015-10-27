@@ -1,16 +1,22 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
-        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.+'
+        classpath "com.netflix.nebula:gradle-extra-configurations-plugin:$extraGradleConfigurationsVersion"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:$aptGradlePluginVersion"
     }
 }
 
 apply plugin: "java"
+apply plugin: "net.ltgt.apt"
 apply plugin: "nebula.optional-base"
 apply plugin: "maven-publish"
+apply plugin: "idea"
 
 sourceCompatibility = 1.7
 version = projectVersion
@@ -39,12 +45,14 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional
     compile "com.google.gwt:gwt-user:$gwtVersion", optional
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$jpa21Version", optional
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
     compile "javax.validation:validation-api:$javaxValidationVersion"
 
     testCompile "org.testng:testng:$testngVersion"
     testCompile "org.slf4j:slf4j-api:$slf4jVersion"
     testCompile "ch.qos.logback:logback-classic:$logbackVersion"
 
+    apt "org.hibernate:hibernate-jpamodelgen:$hibernateVersion"
 }
 
 test {

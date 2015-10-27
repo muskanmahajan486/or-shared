@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.gwt.core.client.js.JsType;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE;
 import static com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion.NON_NULL;
@@ -13,10 +19,25 @@ import static com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion.
 @JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, setterVisibility = NONE, isGetterVisibility = NONE)
 public class EditorSettings {
 
+    @NotNull
+    @Column(name = "EDITOR_TYPE_LABEL", nullable = false)
     public String typeLabel = "Unknown Type";
+
+    @NotNull
+    @Column(name = "EDITOR_NODE_COLOR", nullable = false)
+    @Enumerated(EnumType.STRING)
     public NodeColor nodeColor = NodeColor.DEFAULT;
+
+    @NotNull
+    @Column(name = "EDITOR_POSITION_X", nullable = false)
     public double positionX;
+
+    @NotNull
+    @Column(name = "EDITOR_POSITION_Y", nullable = false)
     public double positionY;
+
+    // TODO
+    @Transient
     public String[] components;
 
     public EditorSettings() {

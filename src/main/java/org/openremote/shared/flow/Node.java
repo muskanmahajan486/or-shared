@@ -1,12 +1,17 @@
 package org.openremote.shared.flow;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @JsType
+@Entity
+@Table(name = "NODE")
 public class Node extends FlowObject {
 
     public static final String TYPE_SUBFLOW = "urn:openremote:flow:node:subflow";
@@ -18,14 +23,44 @@ public class Node extends FlowObject {
     public static final String TYPE_PRODUCER = "urn:openremote:flow:node:producer";
     public static final String TYPE_PRODUCER_LABEL = "Source";
 
-    public String subflowId;
+    // TODO
+    @Transient
     public Slot[] slots = new Slot[0];
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FLOW_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_NODE_FLOW_ID"))
+    @org.hibernate.annotations.OnDelete(
+        action = org.hibernate.annotations.OnDeleteAction.CASCADE
+    )
+    @JsIgnore
+    @JsonIgnore
+    public Flow flow;
+
+    // TODO Should this be FK constrained?
+    @Column(name = "SUBFLOW_ID", nullable = true)
+    public String subflowId;
+
+    @Column(name = "CLIENT_ACCESS", nullable = false)
     public boolean clientAccess;
+
+    @Column(name = "CLIENT_WIDGET", nullable = false)
     public boolean clientWidget;
+
+    @Column(name = "ROUTE_PRE_ENDPOINT", nullable = true)
     public String preEndpoint;
+
+    @Column(name = "ROUTE_POST_ENDPOINT", nullable = true)
     public String postEndpoint;
+
+    @Embedded
     public EditorSettings editorSettings = new EditorSettings();
+
+    // TODO
+    @Transient
     public String properties;
+
+    // TODO
+    @Transient
     public String[] persistentPropertyPaths;
 
     protected Node() {
@@ -125,7 +160,7 @@ public class Node extends FlowObject {
         this.persistentPropertyPaths = persistentPropertyPaths;
     }
 
-    public void addSlots(Slot[] newSlots) {
+    public void addSlots(Slot... newSlots) {
         List<Slot> list = new ArrayList<>();
         list.addAll(Arrays.asList(getSlots()));
         list.addAll(Arrays.asList(newSlots));
@@ -189,7 +224,7 @@ public class Node extends FlowObject {
     }
 
     public Slot findSlotByPosition(int position, String type) {
-        if (position > getSlots().length-1)
+        if (position > getSlots().length - 1)
             return null;
         if (getSlots()[position].isOfType(type))
             return getSlots()[position];

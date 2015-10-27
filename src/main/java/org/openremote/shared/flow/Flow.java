@@ -8,17 +8,23 @@ import java.util.*;
 
 @JsType
 @Entity
+@Table(name = "FLOW")
 public class Flow extends FlowObject {
 
     public static final String TYPE = "urn:openremote:flow";
 
+    @Version
+    protected int version;
+
     @Transient
     public Node[] nodes = new Node[0];
 
+    @Transient
     public Wire[] wires = new Wire[0];
 
     @Transient
     public FlowDependency[] superDependencies = new FlowDependency[0];
+
     @Transient
     public FlowDependency[] subDependencies = new FlowDependency[0];
 
