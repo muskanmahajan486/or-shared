@@ -14,7 +14,7 @@ public class Flow extends FlowObject {
     public static final String TYPE = "urn:openremote:flow";
 
     @Version
-    protected int version;
+    public int version;
 
     @Column(name = "CREATED_ON")
     @Temporal(TemporalType.TIMESTAMP)
