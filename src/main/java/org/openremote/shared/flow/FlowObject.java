@@ -5,14 +5,11 @@ import org.openremote.shared.model.Identifiable;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @JsType
 @MappedSuperclass
 public class FlowObject extends Identifiable {
 
-    @Size(min = 3, max = 255)
     @Column(name = "LABEL", nullable = true)
     public String label;
 

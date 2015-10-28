@@ -16,6 +16,10 @@ public class Flow extends FlowObject {
     @Version
     protected int version;
 
+    @Column(name = "CREATED_ON")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date createdOn = new Date();
+
     @Transient
     public Node[] nodes = new Node[0];
 
@@ -50,6 +54,10 @@ public class Flow extends FlowObject {
             if (wireSet.size() != wires.length)
                 throw new IllegalArgumentException("Duplicate wires: " + Arrays.toString(wires));
         }
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
     public Node[] getNodes() {

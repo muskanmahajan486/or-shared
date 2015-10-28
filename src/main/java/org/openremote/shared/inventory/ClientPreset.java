@@ -2,18 +2,43 @@ package org.openremote.shared.inventory;
 
 import com.google.gwt.core.client.js.JsType;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Locale;
 
 @JsType
+@Entity
+@Table(name = "CLIENT_PRESET")
 public class ClientPreset {
 
+    @Id
+    @GeneratedValue(generator = "ID_GENERATOR")
     public Long id;
+
+    @NotNull
+    @Size(min = 2, max = 255)
+    @Column(name = "NAME", unique = true)
     public String name;
+
+    @NotNull
+    @Size(min = 2, max = 255)
+    @Column(name = "AGENT_LIKE")
     public String agentLike;
+
+    @Column(name = "MIN_WIDTH", nullable = false)
     public int minWidth;
+
+    @Column(name = "MAX_WIDTH", nullable = false)
     public int maxWidth;
+
+    @Column(name = "MIN_HEIGHT", nullable = false)
     public int minHeight;
+
+    @Column(name = "MAX_HEIGHT", nullable = false)
     public int maxHeight;
+
+    @Column(name = "INITIAL_FLOW_ID", nullable = true)
     public String initialFlowId;
 
     public ClientPreset() {

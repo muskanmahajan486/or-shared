@@ -95,6 +95,7 @@ public class Slot extends FlowObject {
         return getClass().getSimpleName() + "{" +
             "label='" + getLabel() + '\'' +
             ", id=" + getId() +
+            ", type=" + getType() +
             ", connectable=" + isConnectable() +
             ", peerId=" + getPeerId() +
             ", propertyPath=" + getPropertyPath() +

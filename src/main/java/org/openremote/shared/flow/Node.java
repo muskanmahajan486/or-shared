@@ -3,6 +3,7 @@ package org.openremote.shared.flow;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gwt.core.client.js.JsType;
 import jsinterop.annotations.JsIgnore;
+import org.openremote.shared.util.StringArrayConverter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ public class Node extends FlowObject {
     public static final String TYPE_PRODUCER = "urn:openremote:flow:node:producer";
     public static final String TYPE_PRODUCER_LABEL = "Source";
 
-    // TODO
     @Transient
     public Slot[] slots = new Slot[0];
 
@@ -55,12 +55,11 @@ public class Node extends FlowObject {
     @Embedded
     public EditorSettings editorSettings = new EditorSettings();
 
-    // TODO
-    @Transient
+    @Column(name = "NODE_PROPERTIES", nullable = true, length = 1048576) // TODO 1MB?
     public String properties;
 
-    // TODO
-    @Transient
+    @Column(name = "PERSISTENT_PROPERTY_PATHS", nullable = true)
+    @Convert(converter = StringArrayConverter.class)
     public String[] persistentPropertyPaths;
 
     protected Node() {
