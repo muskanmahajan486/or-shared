@@ -14,6 +14,7 @@ public class ClientPreset {
 
     @Id
     @GeneratedValue(generator = "ID_GENERATOR")
+    @Column(name = "ID")
     public Long id;
 
     @NotNull
