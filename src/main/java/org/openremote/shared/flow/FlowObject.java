@@ -41,6 +41,7 @@ public class FlowObject extends Identifiable {
     public String toString() {
         return getClass().getSimpleName() + "{" +
             "label='" + getLabel() + '\'' +
+            ", type='" + getType() + '\'' +
             ", id=" + getId() +
             '}';
     }
