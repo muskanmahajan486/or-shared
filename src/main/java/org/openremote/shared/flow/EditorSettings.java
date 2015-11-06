@@ -3,11 +3,9 @@ package org.openremote.shared.flow;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.gwt.core.client.js.JsType;
+import org.openremote.shared.util.StringArrayConverter;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
@@ -36,8 +34,8 @@ public class EditorSettings {
     @Column(name = "EDITOR_POSITION_Y", nullable = false)
     public double positionY;
 
-    // TODO
-    @Transient
+    @Column(name = "EDITOR_COMPONENTS", nullable = true)
+    @Convert(converter = StringArrayConverter.class)
     public String[] components;
 
     public EditorSettings() {
