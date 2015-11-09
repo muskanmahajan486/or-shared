@@ -1,6 +1,7 @@
 package org.openremote.shared.event.client;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.event.FlowEvent;
 import org.openremote.shared.flow.Flow;
 
@@ -12,13 +13,16 @@ public class SubflowNodeCreateEvent extends FlowEvent {
     public double positionY;
     public boolean applyPositionAsProperties;
 
+    @JsIgnore
     public SubflowNodeCreateEvent() {
     }
 
+    @JsIgnore
     public SubflowNodeCreateEvent(Flow flow, String subflowId, double positionX, double positionY) {
         this(flow, subflowId, positionX, positionY, false);
     }
 
+    @JsIgnore
     public SubflowNodeCreateEvent(Flow flow, String subflowId, double positionX, double positionY, boolean applyPositionAsProperties) {
         super(flow);
         this.subflowId = subflowId;

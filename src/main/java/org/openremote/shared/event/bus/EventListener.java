@@ -1,6 +1,6 @@
 package org.openremote.shared.event.bus;
 
-import com.google.gwt.core.client.js.JsFunction;
+import jsinterop.annotations.JsFunction;
 import org.openremote.shared.event.Event;
 
 @JsFunction

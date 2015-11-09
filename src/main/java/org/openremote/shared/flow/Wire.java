@@ -1,7 +1,7 @@
 package org.openremote.shared.flow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
 import jsinterop.annotations.JsIgnore;
 
 import javax.persistence.*;
@@ -67,13 +67,16 @@ public class Wire {
     @JsonIgnore
     public String flowId;
 
+    @JsIgnore
     protected Wire() {
     }
 
+    @JsIgnore
     public Wire(Slot source, Slot sink) {
         this(source.getId(), sink.getId());
     }
 
+    @JsIgnore
     public Wire(String sourceId, String sinkId) {
         this.sourceId = sourceId;
         this.sinkId = sinkId;

@@ -1,6 +1,6 @@
 package org.openremote.shared.func;
 
-import com.google.gwt.core.client.js.JsFunction;
+import jsinterop.annotations.JsFunction;
 
 @JsFunction
 public interface Callback {

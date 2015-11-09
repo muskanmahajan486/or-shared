@@ -1,5 +1,8 @@
 package org.openremote.shared.event;
 
+import jsinterop.annotations.JsType;
+
+@JsType
 public enum FlowDeploymentPhase {
 
     NOT_FOUND,

@@ -1,6 +1,6 @@
 package org.openremote.shared.catalog;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
 
 @JsType
 public enum CatalogCategory {

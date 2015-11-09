@@ -1,6 +1,7 @@
 package org.openremote.shared.flow;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.model.Identifiable;
 
 import javax.persistence.Column;
@@ -13,9 +14,11 @@ public class FlowObject extends Identifiable {
     @Column(name = "LABEL", nullable = true)
     public String label;
 
+    @JsIgnore
     protected FlowObject() {
     }
 
+    @JsIgnore
     public FlowObject(String label, String id, String type) {
         super(id, type);
         this.label = label;

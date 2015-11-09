@@ -1,7 +1,7 @@
 package org.openremote.shared.flow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
 import jsinterop.annotations.JsIgnore;
 
 import javax.persistence.*;
@@ -32,33 +32,41 @@ public class Slot extends FlowObject {
     @Column(name = "PROPERTY_PATH", nullable = true)
     public String propertyPath;
 
+    @JsIgnore
     protected Slot() {
     }
 
+    @JsIgnore
     public Slot(String id, String type) {
         super(null, id, type);
     }
 
+    @JsIgnore
     public Slot(String label, String id, String type) {
         this(label, id, type, null);
     }
 
+    @JsIgnore
     public Slot(String label, String id, String type, String propertyPath) {
         this(label, id, type, true, null, propertyPath);
     }
 
+    @JsIgnore
     public Slot(String id, String type, boolean connectable) {
         this(null, id, type, connectable);
     }
 
+    @JsIgnore
     public Slot(String label, String id, String type, boolean connectable) {
         this(label, id, type, connectable, null, null);
     }
 
+    @JsIgnore
     public Slot(String id, Slot peer, String label) {
         this(label, id, peer.getType(), true, peer.getId(), null);
     }
 
+    @JsIgnore
     public Slot(String label, String id, String type, boolean connectable, String peerId, String propertyPath) {
         super(label, id, type);
         this.connectable = connectable;

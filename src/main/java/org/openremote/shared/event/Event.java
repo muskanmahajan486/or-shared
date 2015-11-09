@@ -2,7 +2,8 @@ package org.openremote.shared.event;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.event.client.*;
 import org.openremote.shared.util.Util;
 
@@ -41,15 +42,17 @@ import org.openremote.shared.util.Util;
 )
 public abstract class Event {
 
-  public static String getType(String simpleClassName) {
+    @JsIgnore
+    public static String getType(String simpleClassName) {
         String type = Util.toLowerCaseDash(simpleClassName);
 
-        if (type.length() > 6 && type.substring(type.length()-6).equals("-event"))
-            type = type.substring(0, type.length()-6);
+        if (type.length() > 6 && type.substring(type.length() - 6).equals("-event"))
+            type = type.substring(0, type.length() - 6);
 
         return type;
     }
 
+    @JsIgnore
     public static String getType(Class<? extends Event> actionClass) {
         return getType(actionClass.getSimpleName());
     }

@@ -1,6 +1,7 @@
 package org.openremote.shared.event;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.flow.Flow;
 
 @JsType
@@ -8,9 +9,11 @@ public abstract class FlowIdEvent extends Event {
 
     public String flowId;
 
+    @JsIgnore
     protected FlowIdEvent() {
     }
 
+    @JsIgnore
     public FlowIdEvent(String flowId) {
         this.flowId = flowId;
     }

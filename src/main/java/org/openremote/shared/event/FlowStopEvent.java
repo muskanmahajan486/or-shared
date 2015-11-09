@@ -1,13 +1,16 @@
 package org.openremote.shared.event;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 
 @JsType
 public class FlowStopEvent extends FlowIdEvent {
 
+    @JsIgnore
     protected FlowStopEvent() {
     }
 
+    @JsIgnore
     public FlowStopEvent(String flowId) {
         super(flowId);
     }

@@ -1,7 +1,8 @@
 package org.openremote.shared.event;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.flow.Flow;
 import org.openremote.shared.flow.Node;
 
@@ -14,18 +15,22 @@ public class FlowDeploymentFailureEvent extends FlowIdEvent {
     public Node node;
     public Node[] unprocessedNodes;
 
+    @JsIgnore
     protected FlowDeploymentFailureEvent() {
     }
 
+    @JsIgnore
     public FlowDeploymentFailureEvent(String flowId) {
         super(flowId);
     }
 
+    @JsIgnore
     public FlowDeploymentFailureEvent(String flowId, FlowDeploymentPhase phase) {
         super(flowId);
         this.phase = phase;
     }
 
+    @JsIgnore
     public FlowDeploymentFailureEvent(Flow flow, FlowDeploymentPhase phase, String exceptionType, String message, Node node, Node[] unprocessedNodes) {
         super(flow.getId());
         this.phase = phase;

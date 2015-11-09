@@ -1,7 +1,7 @@
 package org.openremote.shared.flow;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
 import jsinterop.annotations.JsIgnore;
 import org.openremote.shared.util.StringArrayConverter;
 
@@ -62,13 +62,16 @@ public class Node extends FlowObject {
     @Convert(converter = StringArrayConverter.class)
     public String[] persistentPropertyPaths;
 
+    @JsIgnore
     protected Node() {
     }
 
+    @JsIgnore
     public Node(String label, String id, String type) {
         super(label, id, type);
     }
 
+    @JsIgnore
     public Node(String label, String id, String type, String subflowId) {
         super(label, id, type);
         if (!isOfTypeSubflow()) {

@@ -1,6 +1,7 @@
 package org.openremote.shared.inventory;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ public class ClientPreset {
     @Id
     @GeneratedValue(generator = "ID_GENERATOR")
     @Column(name = "ID")
+    @JsIgnore
     public Long id;
 
     @NotNull
@@ -42,15 +44,18 @@ public class ClientPreset {
     @Column(name = "INITIAL_FLOW_ID", nullable = true)
     public String initialFlowId;
 
+    @JsIgnore
     public ClientPreset() {
     }
 
+    @JsIgnore
     public ClientPreset(Long id, String name, String agentLike) {
         this.id = id;
         this.name = name;
         this.agentLike = agentLike;
     }
 
+    @JsIgnore
     public ClientPreset(Long id, String name, String agentLike, int minWidth, int maxWidth, int minHeight, int maxHeight) {
         this.id = id;
         this.name = name;
@@ -61,10 +66,12 @@ public class ClientPreset {
         this.maxHeight = maxHeight;
     }
 
+    @JsIgnore
     public Long getId() {
         return id;
     }
 
+    @JsIgnore
     public void setId(Long id) {
         this.id = id;
     }

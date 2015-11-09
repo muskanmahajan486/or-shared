@@ -1,6 +1,7 @@
 package org.openremote.shared.event.client;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.event.Event;
 import org.openremote.shared.inventory.ClientPresetVariant;
 
@@ -9,9 +10,11 @@ public class ShellReadyEvent extends Event {
 
     public ClientPresetVariant clientPresetVariant;
 
+    @JsIgnore
     public ShellReadyEvent() {
     }
 
+    @JsIgnore
     public ShellReadyEvent(ClientPresetVariant clientPresetVariant) {
         this.clientPresetVariant = clientPresetVariant;
     }

@@ -1,6 +1,7 @@
 package org.openremote.shared.inventory;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 
 @JsType
 public class ClientPresetVariant {
@@ -9,9 +10,11 @@ public class ClientPresetVariant {
     public int widthPixels;
     public int heightPixels;
 
+    @JsIgnore
     protected ClientPresetVariant() {
     }
 
+    @JsIgnore
     public ClientPresetVariant(String userAgent, Integer widthPixels, Integer heightPixels) {
         this.userAgent = userAgent;
         this.widthPixels = widthPixels != null ? widthPixels : 0;

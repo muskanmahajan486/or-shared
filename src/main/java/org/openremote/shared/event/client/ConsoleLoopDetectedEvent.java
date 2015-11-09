@@ -1,6 +1,7 @@
 package org.openremote.shared.event.client;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.event.Event;
 
 @JsType
@@ -9,9 +10,11 @@ public class ConsoleLoopDetectedEvent extends Event {
     public String nodeId;
     public String nodeLabel;
 
+    @JsIgnore
     public ConsoleLoopDetectedEvent() {
     }
 
+    @JsIgnore
     public ConsoleLoopDetectedEvent(String nodeId, String nodeLabel) {
         this.nodeId = nodeId;
         this.nodeLabel = nodeLabel;

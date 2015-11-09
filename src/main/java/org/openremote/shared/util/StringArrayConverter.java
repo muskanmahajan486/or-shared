@@ -6,7 +6,7 @@ public class StringArrayConverter implements AttributeConverter<String[], String
 
     @Override
     public String convertToDatabaseColumn(String[] attribute) {
-        if (attribute == null)
+        if (attribute == null || attribute.length == 0)
             return null;
         StringBuilder sb = new StringBuilder();
         for (String s : attribute) {

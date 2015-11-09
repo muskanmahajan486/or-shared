@@ -1,6 +1,7 @@
 package org.openremote.shared.catalog;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.flow.NodeColor;
 
 @JsType
@@ -14,9 +15,11 @@ public class CatalogItem {
 
     public NodeColor nodeColor;
 
+    @JsIgnore
     protected CatalogItem() {
     }
 
+    @JsIgnore
     public CatalogItem(String label, CatalogCategory category, String nodeType, NodeColor nodeColor) {
         this.label = label;
         this.category = category;

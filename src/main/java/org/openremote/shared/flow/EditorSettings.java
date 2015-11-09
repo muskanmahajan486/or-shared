@@ -2,7 +2,8 @@ package org.openremote.shared.flow;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.util.StringArrayConverter;
 
 import javax.persistence.*;
@@ -38,13 +39,16 @@ public class EditorSettings {
     @Convert(converter = StringArrayConverter.class)
     public String[] components;
 
+    @JsIgnore
     public EditorSettings() {
     }
 
+    @JsIgnore
     public EditorSettings(String typeLabel) {
         this.typeLabel = typeLabel;
     }
 
+    @JsIgnore
     public EditorSettings(String typeLabel, NodeColor nodeColor) {
         this.typeLabel = typeLabel;
         this.nodeColor = nodeColor;

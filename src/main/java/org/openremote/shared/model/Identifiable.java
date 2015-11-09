@@ -1,6 +1,7 @@
 package org.openremote.shared.model;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,9 +20,11 @@ public abstract class Identifiable {
     @Column(name = "MODEL_TYPE")
     public String type; // URI
 
+    @JsIgnore
     protected Identifiable() {
     }
 
+    @JsIgnore
     public Identifiable(String id, String type) {
         this.id = id;
         this.type = type;

@@ -1,7 +1,7 @@
 package org.openremote.shared.event;
 
-import com.google.gwt.core.client.js.JsNoExport;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.flow.Slot;
 
 import java.util.Map;
@@ -11,21 +11,25 @@ public class Message extends Event {
 
     public String slotId;
     public String instanceId;
-    @JsNoExport
+    @JsIgnore
     public Map<String, Object> headers;
     public String body;
 
+    @JsIgnore
     public Message() {
     }
 
+    @JsIgnore
     public Message(Slot slot, String body) {
         this(slot.getId(), null, body, null);
     }
 
+    @JsIgnore
     public Message(Slot slot, String instanceId, String body) {
         this(slot.getId(), instanceId, body, null);
     }
 
+    @JsIgnore
     public Message(String slotId, String instanceId, String body, Map<String, Object> headers) {
         this.slotId = slotId;
         this.instanceId = instanceId;
@@ -49,12 +53,12 @@ public class Message extends Event {
         this.instanceId = instanceId;
     }
 
-    @JsNoExport
+    @JsIgnore
     public Map<String, Object> getHeaders() {
         return headers;
     }
 
-    @JsNoExport
+    @JsIgnore
     public void setHeaders(Map<String, Object> headers) {
         this.headers = headers;
     }

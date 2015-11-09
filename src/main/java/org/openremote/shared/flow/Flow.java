@@ -1,7 +1,7 @@
 package org.openremote.shared.flow;
 
-import com.google.gwt.core.client.js.JsNoExport;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 
 import javax.persistence.*;
 import java.util.*;
@@ -16,6 +16,7 @@ public class Flow extends FlowObject {
     @Version
     public int version;
 
+    @JsIgnore
     @Column(name = "CREATED_ON")
     @Temporal(TemporalType.TIMESTAMP)
     public Date createdOn = new Date();
@@ -32,18 +33,22 @@ public class Flow extends FlowObject {
     @Transient
     public FlowDependency[] subDependencies = new FlowDependency[0];
 
+    @JsIgnore
     protected Flow() {
     }
 
+    @JsIgnore
     public Flow(String label, String id) {
         super(label, id, TYPE);
     }
 
+    @JsIgnore
     public Flow(String label, String id, Node... nodes) {
         this(label, id);
         this.nodes = nodes;
     }
 
+    @JsIgnore
     public Flow(String label, String id, Node[] nodes, Wire[] wires) {
         this(label, id);
         this.nodes = nodes;
@@ -56,6 +61,7 @@ public class Flow extends FlowObject {
         }
     }
 
+    @JsIgnore
     public Date getCreatedOn() {
         return createdOn;
     }
@@ -366,13 +372,13 @@ public class Flow extends FlowObject {
         return null;
     }
 
-    @JsNoExport
+    @JsIgnore
     public void printWires(StringBuilder sb) {
         sb.append("\n").append("Wires of ").append(this).append(" => ").append(getWires().length).append("\n");
         printWires(sb, getWires());
     }
 
-    @JsNoExport
+    @JsIgnore
     public void printWires(StringBuilder sb, Wire[] wires) {
         for (Wire wire : wires) {
             sb.append("--------------------------------------------------------------------------------------------");

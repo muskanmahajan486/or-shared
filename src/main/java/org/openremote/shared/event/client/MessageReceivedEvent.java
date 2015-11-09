@@ -1,6 +1,7 @@
 package org.openremote.shared.event.client;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.event.Event;
 import org.openremote.shared.event.Message;
 
@@ -9,9 +10,11 @@ public class MessageReceivedEvent extends Event {
 
     public Message message;
 
+    @JsIgnore
     public MessageReceivedEvent() {
     }
 
+    @JsIgnore
     public MessageReceivedEvent(Message message) {
         this.message = message;
     }
