@@ -45,8 +45,8 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional
     compile "com.google.gwt:gwt-user:$gwtVersion", optional
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$jpa21Version", optional
-    compile "org.hibernate:hibernate-core:$hibernateVersion"
-    compile "javax.validation:validation-api:$javaxValidationVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion", optional
+    compile "javax.validation:validation-api:$javaxValidationVersion", optional
 
     testCompile "org.testng:testng:$testngVersion"
     testCompile "org.slf4j:slf4j-api:$slf4jVersion"
