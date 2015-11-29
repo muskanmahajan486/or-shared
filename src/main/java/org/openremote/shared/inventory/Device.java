@@ -20,8 +20,13 @@
 
 package org.openremote.shared.inventory;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
+
+@JsType
 public class Device extends InventoryObject {
 
+    @JsType
     public enum Status {
         UNINITIALIZED,
         INITIALIZING,
@@ -34,17 +39,20 @@ public class Device extends InventoryObject {
         MAINTENANCE
     }
 
-    protected Status status = Status.UNINITIALIZED;
+    public Status status = Status.UNINITIALIZED;
 
-    protected Device parent;
+    public Device parent;
 
+    @JsIgnore
     protected Device() {
     }
 
+    @JsIgnore
     public Device(String label, String id, String type) {
         this(label, id, type, null);
     }
 
+    @JsIgnore
     public Device(String label, String id, String type, Device parent) {
         super(label, id, type);
         this.parent = parent;
@@ -64,5 +72,12 @@ public class Device extends InventoryObject {
 
     public void setParent(Device parent) {
         this.parent = parent;
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+            "status='" + getStatus()+ '\'' +
+            "} " + super.toString();
     }
 }

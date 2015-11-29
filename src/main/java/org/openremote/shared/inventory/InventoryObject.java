@@ -20,20 +20,22 @@
 
 package org.openremote.shared.inventory;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import org.openremote.shared.model.Identifiable;
-import org.openremote.shared.model.Property;
 
-import java.util.*;
-
+@JsType
 public class InventoryObject extends Identifiable {
 
     public String label;
 
-    public Map<String, Property> properties = new LinkedHashMap<>();
+    public String properties;
 
+    @JsIgnore
     protected InventoryObject() {
     }
 
+    @JsIgnore
     public InventoryObject(String label, String id, String type) {
         super(id, type);
         this.label = label;
@@ -47,8 +49,12 @@ public class InventoryObject extends Identifiable {
         this.label = label;
     }
 
-    public Map<String, Property> getProperties() {
+    public String getProperties() {
         return properties;
+    }
+
+    public void setProperties(String properties) {
+        this.properties = properties;
     }
 
     @Override

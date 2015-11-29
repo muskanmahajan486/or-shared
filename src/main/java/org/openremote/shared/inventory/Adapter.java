@@ -20,17 +20,24 @@
 
 package org.openremote.shared.inventory;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
+
+@JsType
 public class Adapter extends InventoryObject {
 
-    protected String discoveryEndpoint;
+    public String discoveryEndpoint;
 
+    @JsIgnore
     protected Adapter() {
     }
 
+    @JsIgnore
     public Adapter(String label, String id, String type) {
         super(label, id, type);
     }
 
+    @JsIgnore
     public Adapter(String label, String id, String type, String discoveryEndpoint) {
         super(label, id, type);
         this.label = label;
