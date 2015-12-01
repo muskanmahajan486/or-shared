@@ -24,11 +24,21 @@ import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
 import org.openremote.shared.model.Identifiable;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @JsType
+@MappedSuperclass
 public class InventoryObject extends Identifiable {
 
+    @NotNull
+    @Size(min = 3, max = 1023)
+    @Column(name = "LABEL")
     public String label;
 
+    @Column(name = "ITEM_PROPERTIES", nullable = true, length = 1048576) // TODO 1MB?
     public String properties;
 
     @JsIgnore

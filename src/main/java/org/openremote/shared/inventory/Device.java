@@ -23,24 +23,28 @@ package org.openremote.shared.inventory;
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
 
+import javax.persistence.*;
+
 @JsType
+@Entity
+@Table(name = "DEVICE")
 public class Device extends InventoryObject {
 
     @JsType
     public enum Status {
         UNINITIALIZED,
-        INITIALIZING,
-        ONLINE,
+        READY,
         OFFLINE,
-        REMOVING,
-        REMOVED,
-        INITIALIZATION_ERROR,
+        ONLINE,
         COMMUNICATION_ERROR,
         MAINTENANCE
     }
 
+    @Column(name = "DEVICE_STATUS", nullable = false)
+    @Enumerated(EnumType.STRING)
     public Status status = Status.UNINITIALIZED;
 
+    @Transient
     public Device parent;
 
     @JsIgnore
