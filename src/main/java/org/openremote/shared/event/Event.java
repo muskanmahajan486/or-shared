@@ -37,6 +37,7 @@ import org.openremote.shared.util.Util;
     @JsonSubTypes.Type(value = FlowRequestStatusEvent.class, name = "FLOW_REQUEST_STATUS"),
     @JsonSubTypes.Type(value = FlowStatusEvent.class, name = "FLOW_STATUS"),
     @JsonSubTypes.Type(value = FlowStopEvent.class, name = "FLOW_STOP"),
+    @JsonSubTypes.Type(value = InventoryDevicesUpdatedEvent.class, name = "INVENTORY_DEVICES_UPDATED"),
     // Events used only on client (serialized on console/native shell bus)
     @JsonSubTypes.Type(value = ConsoleEditModeEvent.class, name = "CONSOLE_EDIT_MODE"),
     @JsonSubTypes.Type(value = ConsoleLoopDetectedEvent.class, name = "CONSOLE_LOOP_DETECTED"),

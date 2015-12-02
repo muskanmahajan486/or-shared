@@ -18,14 +18,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.openremote.shared.inventory;
+package org.openremote.shared.event;
 
-public class Sensor extends InventoryObject {
+import jsinterop.annotations.JsType;
 
-    protected Sensor() {
-    }
+@JsType
+public class InventoryDevicesUpdatedEvent extends Event {
 
-    public Sensor(String label, String id, String type) {
-        super(label, id, type);
-    }
 }

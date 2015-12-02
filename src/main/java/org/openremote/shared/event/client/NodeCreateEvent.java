@@ -28,7 +28,9 @@ import org.openremote.shared.flow.Flow;
 @JsType
 public class NodeCreateEvent extends FlowEvent {
 
+    public String label;
     public String nodeType;
+    public String nodeProperties;
     public double positionX;
     public double positionY;
     public boolean applyPositionAsProperties;
@@ -38,21 +40,28 @@ public class NodeCreateEvent extends FlowEvent {
     }
 
     @JsIgnore
-    public NodeCreateEvent(Flow flow, String nodeType, double positionX, double positionY) {
-        this(flow, nodeType, positionX, positionY, false);
-    }
-
-    @JsIgnore
-    public NodeCreateEvent(Flow flow, String nodeType, double positionX, double positionY, boolean applyPositionAsProperties) {
+    public NodeCreateEvent(Flow flow,
+                           String label, String nodeType, String nodeProperties,
+                           double positionX, double positionY, boolean applyPositionAsProperties) {
         super(flow);
+        this.label = label;
         this.nodeType = nodeType;
+        this.nodeProperties = nodeProperties;
         this.positionX = positionX;
         this.positionY = positionY;
         this.applyPositionAsProperties = applyPositionAsProperties;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     public String getNodeType() {
         return nodeType;
+    }
+
+    public String getNodeProperties() {
+        return nodeProperties;
     }
 
     public double getPositionX() {

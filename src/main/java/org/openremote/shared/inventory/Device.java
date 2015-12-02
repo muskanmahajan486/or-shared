@@ -22,8 +22,10 @@ package org.openremote.shared.inventory;
 
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
+import org.openremote.shared.util.StringArrayConverter;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @JsType
 @Entity
@@ -44,8 +46,13 @@ public class Device extends InventoryObject {
     @Enumerated(EnumType.STRING)
     public Status status = Status.UNINITIALIZED;
 
-    @Transient
-    public Device parent;
+    @Column(name = "SENSOR_ENDPOINTS", nullable = true, length = 32768)
+    @Convert(converter = StringArrayConverter.class)
+    public String[] sensorEndpoints;
+
+    @Column(name = "ACTUATOR_ENDPOINTS", nullable = true, length = 32768)
+    @Convert(converter = StringArrayConverter.class)
+    public String[] actuatorEndpoints;
 
     @JsIgnore
     protected Device() {
@@ -53,13 +60,7 @@ public class Device extends InventoryObject {
 
     @JsIgnore
     public Device(String label, String id, String type) {
-        this(label, id, type, null);
-    }
-
-    @JsIgnore
-    public Device(String label, String id, String type, Device parent) {
         super(label, id, type);
-        this.parent = parent;
     }
 
     public Status getStatus() {
@@ -70,18 +71,28 @@ public class Device extends InventoryObject {
         this.status = status;
     }
 
-    public Device getParent() {
-        return parent;
+    public String[] getSensorEndpoints() {
+        return sensorEndpoints;
     }
 
-    public void setParent(Device parent) {
-        this.parent = parent;
+    public void setSensorEndpoints(String[] sensorEndpoints) {
+        this.sensorEndpoints = sensorEndpoints;
+    }
+
+    public String[] getActuatorEndpoints() {
+        return actuatorEndpoints;
+    }
+
+    public void setActuatorEndpoints(String[] actuatorEndpoints) {
+        this.actuatorEndpoints = actuatorEndpoints;
     }
 
     @Override
     public String toString() {
         return "Device{" +
-            "status='" + getStatus()+ '\'' +
+            "status=" + status +
+            ", sensorEndpoints=" + Arrays.toString(sensorEndpoints) +
+            ", actuatorEndpoints=" + Arrays.toString(actuatorEndpoints) +
             "} " + super.toString();
     }
 }
