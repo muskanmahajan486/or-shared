@@ -61,8 +61,8 @@ public abstract class FlowDependencyResolver {
                     superFlowShouldBeStopped = true;
                 } else {
 
-                    // Find slots we no longer have and delete them and their wires
-                    Slot[] slotsWithoutPeer = superFlow.findSlotsWithoutPeer(subflowNode, flow);
+                    // Find slots we no longer have and delete them and their wires (also include any slots without wires)
+                    Slot[] slotsWithoutPeer = superFlow.findSlotsWithoutPeer(subflowNode, flow, false);
                     for (Slot slotWithoutPeer : slotsWithoutPeer) {
 
                         // Slots with a property path must be ignored, they are not mapped to peers by definition
@@ -140,10 +140,10 @@ public abstract class FlowDependencyResolver {
                 // Is the subflow node attached to any other node or does nobody care if we replace it silently?
                 boolean nodeHasWires = subflowDependent.findWiresAttachedToNode(subflowNode).length > 0;
 
-                // Are any of its slot peers no longer in the current flow?
+                // Are any of its (wired) slot peers no longer in the current flow?
                 boolean nodeHasMissingPeers = false;
                 if (nodeHasWires) {
-                    nodeHasMissingPeers = subflowDependent.findSlotsWithoutPeer(subflowNode, flow).length > 0;
+                    nodeHasMissingPeers = subflowDependent.findSlotsWithoutPeer(subflowNode, flow, true).length > 0;
                 }
 
                 flowHasWiresAttached = flowHasWiresAttached || nodeHasWires;

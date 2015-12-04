@@ -336,7 +336,7 @@ public class Flow extends FlowObject {
         return collection.toArray(new Node[collection.size()]);
     }
 
-    public Slot[] findSlotsWithoutPeer(Node subflowNode, Flow flow) {
+    public Slot[] findSlotsWithoutPeer(Node subflowNode, Flow flow, boolean onlyWiredSlots) {
         if (!subflowNode.isOfTypeSubflow() || !flow.getId().equals(subflowNode.getSubflowId()))
             throw new IllegalArgumentException(
                 "Node '" + subflowNode + "' is not a subflow node using: " + flow
@@ -349,6 +349,8 @@ public class Flow extends FlowObject {
             boolean wireAttachedToSlot = findWiresAttachedToSlot(slot.getId()).length > 0;
             if (!wireAttachedToSlot) {
                 // Not going to be a problem, this slot can be removed or updated silently
+                if (!onlyWiredSlots)
+                    list.add(slot);
                 continue;
             }
 
