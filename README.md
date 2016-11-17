@@ -1,4 +1,6 @@
-# OpenRemote Shared Code
+# OpenRemote Milestone 1 Designer Prototype - Library and Shared Code
+
+To be removed when the prototype is removed.
 
 Development
 ---
